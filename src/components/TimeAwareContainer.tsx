@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FallingPetals } from "./FallingPetals";
 import { Fireflies } from "./Fireflies";
@@ -14,11 +14,61 @@ export const TimeAwareContainer = ({
     displayName: string;
 }) => {
     const [isDay, setIsDay] = useState<boolean | null>(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
 
     useEffect(() => {
         const hours = new Date().getHours();
         setIsDay(hours >= 6 && hours < 18);
+
+        // Pre-load audio
+        audioRef.current = new Audio("/music/music.mp3");
+        audioRef.current.loop = true;
+        audioRef.current.volume = 0.5;
+
+        return () => {
+            if (audioRef.current) {
+                audioRef.current.pause();
+                audioRef.current = null;
+            }
+        };
     }, []);
+
+    // Play on first interaction logic
+    useEffect(() => {
+        const enableAudio = () => {
+            if (audioRef.current && audioRef.current.paused) {
+                audioRef.current.play()
+                    .then(() => setIsPlaying(true))
+                    .catch((e) => console.log("Audio resume failed", e));
+            }
+            // Remove listeners once activated
+            window.removeEventListener('click', enableAudio);
+            window.removeEventListener('keydown', enableAudio);
+            window.removeEventListener('touchstart', enableAudio);
+        };
+
+        window.addEventListener('click', enableAudio);
+        window.addEventListener('keydown', enableAudio);
+        window.addEventListener('touchstart', enableAudio);
+
+        return () => {
+            window.removeEventListener('click', enableAudio);
+            window.removeEventListener('keydown', enableAudio);
+            window.removeEventListener('touchstart', enableAudio);
+        };
+    }, []);
+
+    const toggleMusic = () => {
+        if (!audioRef.current) return;
+        if (isPlaying) {
+            audioRef.current.pause();
+            setIsPlaying(false);
+        } else {
+            audioRef.current.play();
+            setIsPlaying(true);
+        }
+    };
 
     if (isDay === null) {
         return <div className="h-[100dvh] w-full bg-sky-100" />;
@@ -26,6 +76,7 @@ export const TimeAwareContainer = ({
 
     return (
         <div className="relative h-[100dvh] w-full overflow-hidden font-sans">
+
             <AnimatePresence mode="wait">
                 {isDay ? (
                     <motion.div
@@ -108,7 +159,7 @@ export const TimeAwareContainer = ({
                     transition={{ delay: 0.9, duration: 1 }}
                     className="flex-none flex items-center gap-4"
                 >
-                    <BackgroundMusic isDay={!!isDay} />
+                    <BackgroundMusic isDay={!!isDay} isPlaying={isPlaying} onToggle={toggleMusic} />
 
                     <button
                         onClick={() => setIsDay(!isDay)}
