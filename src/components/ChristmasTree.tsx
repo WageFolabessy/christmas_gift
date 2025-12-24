@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export const ChristmasTree = ({ isDay }: { isDay: boolean }) => {
     return (
         <div className="relative h-full w-auto aspect-[2/3] z-20 overflow-visible">
-            {/* Glow Backing */}
+            {/* Glow Backing (Night Only) */}
             {!isDay && (
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-amber-500/20 blur-[60px] rounded-full pointer-events-none" />
             )}
@@ -17,15 +17,16 @@ export const ChristmasTree = ({ isDay }: { isDay: boolean }) => {
             >
                 <defs>
                     <linearGradient id="trunkGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#4e342e" />
-                        <stop offset="50%" stopColor="#795548" />
-                        <stop offset="100%" stopColor="#3e2723" />
+                        <stop offset="0%" stopColor={isDay ? "#8d6e63" : "#4e342e"} />
+                        <stop offset="50%" stopColor={isDay ? "#a1887f" : "#795548"} />
+                        <stop offset="100%" stopColor={isDay ? "#5d4037" : "#3e2723"} />
                     </linearGradient>
 
                     <linearGradient id="branchGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#1b5e20" />
-                        <stop offset="50%" stopColor="#2e7d32" />
-                        <stop offset="100%" stopColor="#144217" />
+                        {/* Day: Vibrant Lime/Emerald | Night: Deep Forest Green */}
+                        <stop offset="0%" stopColor={isDay ? "#4ade80" : "#1b5e20"} />
+                        <stop offset="50%" stopColor={isDay ? "#16a34a" : "#2e7d32"} />
+                        <stop offset="100%" stopColor={isDay ? "#14532d" : "#144217"} />
                     </linearGradient>
 
                     <radialGradient id="starGradient">
@@ -63,7 +64,7 @@ export const ChristmasTree = ({ isDay }: { isDay: boolean }) => {
                 >
                     <path d="M40 500 L360 500 L200 300 Z" fill="url(#branchGradient)" />
                     {/* Texture/Shadow */}
-                    <path d="M100 500 L200 300 L300 500 Z" fill="#000" opacity="0.1" />
+                    <path d="M100 500 L200 300 L300 500 Z" fill="#000" opacity={isDay ? 0.05 : 0.2} />
 
                     {/* Garland L1 */}
                     <path d="M80 470 Q200 550 320 450" fill="none" stroke="#fbbf24" strokeWidth="3" strokeDasharray="5 5" opacity="0.7" filter={!isDay ? "url(#glow)" : ""} />
@@ -84,7 +85,7 @@ export const ChristmasTree = ({ isDay }: { isDay: boolean }) => {
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
                 >
                     <path d="M80 360 L320 360 L200 180 Z" fill="url(#branchGradient)" />
-                    <path d="M140 360 L200 180 L260 360 Z" fill="#000" opacity="0.1" />
+                    <path d="M140 360 L200 180 L260 360 Z" fill="#000" opacity={isDay ? 0.05 : 0.2} />
 
                     {/* Garland L2 */}
                     <path d="M120 340 Q200 400 280 320" fill="none" stroke="#fbbf24" strokeWidth="3" strokeDasharray="5 5" opacity="0.7" filter={!isDay ? "url(#glow)" : ""} />
@@ -104,7 +105,7 @@ export const ChristmasTree = ({ isDay }: { isDay: boolean }) => {
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
                 >
                     <path d="M120 220 L280 220 L200 60 Z" fill="url(#branchGradient)" />
-                    <path d="M170 220 L200 60 L230 220 Z" fill="#000" opacity="0.1" />
+                    <path d="M170 220 L200 60 L230 220 Z" fill="#000" opacity={isDay ? 0.05 : 0.2} />
 
                     {/* Garland L3 */}
                     <path d="M140 200 Q200 240 260 180" fill="none" stroke="#fbbf24" strokeWidth="3" strokeDasharray="5 5" opacity="0.7" filter={!isDay ? "url(#glow)" : ""} />
@@ -179,4 +180,3 @@ export const ChristmasTree = ({ isDay }: { isDay: boolean }) => {
         </div>
     );
 };
-

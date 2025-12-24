@@ -13,8 +13,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Natal di Khatulistiwa",
-  description: "A tropical Christmas experience.",
+  title: "Selamat Natal Semuanya",
+  description: "Made with care & love by Endricho Folabessy",
 };
 
 export default function RootLayout({
