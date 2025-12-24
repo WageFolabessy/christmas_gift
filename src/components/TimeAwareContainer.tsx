@@ -6,6 +6,7 @@ import { FallingPetals } from "./FallingPetals";
 import { Fireflies } from "./Fireflies";
 import { Moon, Sun } from "lucide-react";
 import { ChristmasTree } from "./ChristmasTree";
+import { BackgroundMusic } from "./BackgroundMusic";
 
 export const TimeAwareContainer = ({
     displayName,
@@ -100,13 +101,15 @@ export const TimeAwareContainer = ({
                     </p>
                 </motion.div>
 
-                {/* 4. Footer Section */}
+                {/* 4. Footer Section (Controls) */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.9, duration: 1 }}
-                    className="flex-none"
+                    className="flex-none flex items-center gap-4"
                 >
+                    <BackgroundMusic isDay={!!isDay} />
+
                     <button
                         onClick={() => setIsDay(!isDay)}
                         className={`p-3 rounded-full transition-all hover:scale-110 active:scale-95 ${isDay ? "bg-white/50 text-amber-600 hover:bg-white" : "bg-white/10 text-amber-300 hover:bg-white/20"}`}
