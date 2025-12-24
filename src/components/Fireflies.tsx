@@ -4,20 +4,23 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const Firefly = ({ delay }: { delay: number }) => {
-    const [x, setX] = useState(0);
-    const [y, setY] = useState(0);
+    const [style, setStyle] = useState<{ x: number; y: number } | null>(null);
 
     useEffect(() => {
-        setX(Math.random() * 100);
-        setY(Math.random() * 100);
+        setStyle({
+            x: Math.random() * 100,
+            y: Math.random() * 100,
+        });
     }, []);
+
+    if (!style) return null;
 
     return (
         <motion.div
-            initial={{ x: `${x}vw`, y: `${y}vh`, opacity: 0, scale: 0 }}
+            initial={{ x: `${style.x}vw`, y: `${style.y}vh`, opacity: 0, scale: 0 }}
             animate={{
-                x: [`${x}vw`, `${x + (Math.random() * 20 - 10)}vw`, `${x - (Math.random() * 20 - 10)}vw`],
-                y: [`${y}vh`, `${y + (Math.random() * 20 - 10)}vh`, `${y - (Math.random() * 20 - 10)}vh`],
+                x: [`${style.x}vw`, `${style.x + (Math.random() * 20 - 10)}vw`, `${style.x - (Math.random() * 20 - 10)}vw`],
+                y: [`${style.y}vh`, `${style.y + (Math.random() * 20 - 10)}vh`, `${style.y - (Math.random() * 20 - 10)}vh`],
                 opacity: [0, 1, 0.5, 1, 0],
                 scale: [0, 1.5, 1, 1.2, 0],
             }}

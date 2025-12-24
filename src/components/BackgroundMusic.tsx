@@ -22,8 +22,8 @@ export const BackgroundMusic = ({ isDay }: { isDay: boolean }) => {
                 .then(() => {
                     setIsPlaying(true);
                 })
-                .catch((error) => {
-                    console.log("Auto-play prevented:", error);
+                .catch(() => {
+                    // Auto-play prevented, waiting for user interaction
                     setIsPlaying(false);
                 });
         }
@@ -52,8 +52,8 @@ export const BackgroundMusic = ({ isDay }: { isDay: boolean }) => {
         <button
             onClick={togglePlay}
             className={`p-3 rounded-full transition-all hover:scale-110 active:scale-95 ${isDay
-                    ? "bg-white/50 text-emerald-700 hover:bg-white"
-                    : "bg-white/10 text-amber-300 hover:bg-white/20"
+                ? "bg-white/50 text-emerald-700 hover:bg-white"
+                : "bg-white/10 text-amber-300 hover:bg-white/20"
                 }`}
             aria-label={isPlaying ? "Mute music" : "Play music"}
         >
