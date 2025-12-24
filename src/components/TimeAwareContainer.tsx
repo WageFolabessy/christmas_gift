@@ -39,23 +39,29 @@ export const TimeAwareContainer = ({
         const enableAudio = () => {
             if (audioRef.current && audioRef.current.paused) {
                 audioRef.current.play()
-                    .then(() => setIsPlaying(true))
-                    .catch((e) => console.log("Audio resume failed", e));
+                    .then(() => {
+                        setIsPlaying(true);
+                        window.removeEventListener('click', enableAudio);
+                        window.removeEventListener('keydown', enableAudio);
+                        window.removeEventListener('touchstart', enableAudio);
+                        window.removeEventListener('touchend', enableAudio);
+                    })
+                    .catch((e) => {
+                        console.log("Audio resume failed (retrying on next input):", e);
+                    });
             }
-            // Remove listeners once activated
-            window.removeEventListener('click', enableAudio);
-            window.removeEventListener('keydown', enableAudio);
-            window.removeEventListener('touchstart', enableAudio);
         };
 
         window.addEventListener('click', enableAudio);
         window.addEventListener('keydown', enableAudio);
         window.addEventListener('touchstart', enableAudio);
+        window.addEventListener('touchend', enableAudio);
 
         return () => {
             window.removeEventListener('click', enableAudio);
             window.removeEventListener('keydown', enableAudio);
             window.removeEventListener('touchstart', enableAudio);
+            window.removeEventListener('touchend', enableAudio);
         };
     }, []);
 
