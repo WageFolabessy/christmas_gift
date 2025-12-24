@@ -35,7 +35,7 @@ export const TimeAwareContainer = ({
                         transition={{ duration: 1.5 }}
                         className="absolute inset-0 bg-gradient-to-b from-sky-300 via-sky-100 to-amber-50"
                     >
-                        <div className="absolute inset-0 opacity-30 pointer-events-none mix-blend-multiply bg-[url('/mega-mendung.svg')] bg-repeat" />
+                        <div className="absolute inset-0 opacity-30 pointer-events-none mix-blend-multiply bg-[url('/day.svg')] bg-repeat" />
                         <FallingPetals />
                     </motion.div>
                 ) : (
@@ -47,7 +47,7 @@ export const TimeAwareContainer = ({
                         transition={{ duration: 1.5 }}
                         className="absolute inset-0 bg-gradient-to-b from-slate-950 via-indigo-950 to-rose-950"
                     >
-                        <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay bg-[url('/kawung.svg')] bg-repeat" />
+                        <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay bg-[url('/night.svg')] bg-repeat" />
                         <Fireflies />
                     </motion.div>
                 )}
