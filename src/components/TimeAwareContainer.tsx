@@ -35,19 +35,27 @@ export const TimeAwareContainer = ({
     }, []);
 
     // Play on first interaction logic
+    const isAttemptingPlay = useRef(false);
+
     useEffect(() => {
         const enableAudio = () => {
-            if (audioRef.current && audioRef.current.paused) {
+            if (audioRef.current && audioRef.current.paused && !isAttemptingPlay.current) {
+                isAttemptingPlay.current = true;
+
                 audioRef.current.play()
                     .then(() => {
                         setIsPlaying(true);
+                        // Only remove listeners if play was successful
                         window.removeEventListener('click', enableAudio);
                         window.removeEventListener('keydown', enableAudio);
                         window.removeEventListener('touchstart', enableAudio);
                         window.removeEventListener('touchend', enableAudio);
+                        window.removeEventListener('touchmove', enableAudio);
+                        window.removeEventListener('scroll', enableAudio);
                     })
                     .catch((e) => {
                         console.log("Audio resume failed (retrying on next input):", e);
+                        isAttemptingPlay.current = false;
                     });
             }
         };
@@ -56,12 +64,16 @@ export const TimeAwareContainer = ({
         window.addEventListener('keydown', enableAudio);
         window.addEventListener('touchstart', enableAudio);
         window.addEventListener('touchend', enableAudio);
+        window.addEventListener('touchmove', enableAudio);
+        window.addEventListener('scroll', enableAudio);
 
         return () => {
             window.removeEventListener('click', enableAudio);
             window.removeEventListener('keydown', enableAudio);
             window.removeEventListener('touchstart', enableAudio);
             window.removeEventListener('touchend', enableAudio);
+            window.removeEventListener('touchmove', enableAudio);
+            window.removeEventListener('scroll', enableAudio);
         };
     }, []);
 
