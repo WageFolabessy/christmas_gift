@@ -6,7 +6,7 @@ export default async function Home(
   }
 ) {
   const searchParams = await props.searchParams;
-  const name = searchParams.name || "Teman";
+  const name = searchParams.name || "Semuanya";
 
   return <TimeAwareContainer displayName={name} />;
 }
