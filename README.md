@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Selamat Natal Semuanya
 
-## Getting Started
+Website ini adalah sebuah kartu ucapan Natal digital yang interaktif, dirancang khusus untuk merayakan kehangatan Natal di daerah tropis.
 
-First, run the development server:
+## Fitur Spesial
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+*   **Sistem Siang & Malam Dinamis**: Tampilan website berubah otomatis mengikuti waktu lokalmu.
+    *   🌞 **Siang**: Langit biru dan pohon Natal yang berkilauan diterpa sinar matahari.
+    *   🌙 **Malam**: Suasana hangat dengan kunang-kunang yang beterbangan, dan bintang yang bersinar terang.
+*   **Pohon Natal "Hidup"**:
+    *   Di siang hari, pucuk pohon menjadi **Matahari** yang berputar lembut.
+    *   Di malam hari, ia berubah menjadi **Bintang Natal** yang memancarkan harapan.
+*   **Musik Latar**: Alunan musik yang menenangkan (pastikan untuk menyalakan suaranya!).
+*   **Personalisasi**: Kamu bisa menambahkan namamu di URL (contoh: `?name=Namamu`).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Pesan Natal
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Di tengah baris-baris kode dan piksel yang menyusun website ini, terselip doa dan harapan terbaik untukmu.
 
-## Learn More
+Natal tahun ini mengingatkan kita bahwa terang tidak selalu datang dari salju yang putih, tapi juga dari kehangatan hati dan kebersamaan, bahkan di bawah matahari khatulistiwa sekalipun. Seperti pohon Natal di website ini yang selalu bersinar baik siang maupun malam, semoga semangat dan sukacitamu tidak pernah pudar dalam situasi apa pun.
 
-To learn more about Next.js, take a look at the following resources:
+Selamat merayakan kasih, damai, dan pengharapan. Kiranya terang Natal selalu menyertai langkahmu menuju tahun yang baru.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+*Selamat Natal & Tahun Baru 2026!*
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+*Dibuat dengan kebanggaan, kepedulian dan cinta*
