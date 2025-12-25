@@ -4,29 +4,42 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const Petal = ({ delay }: { delay: number }) => {
-    const [randomX, setRandomX] = useState(0);
+    const [config, setConfig] = useState<{
+        initialX: number;
+        moveX: number;
+        duration: number;
+        fontSize: number;
+    } | null>(null);
 
     useEffect(() => {
-        setRandomX(Math.random() * 100);
+        // eslint-disable-next-line
+        setConfig({
+            initialX: Math.random() * 100,
+            moveX: Math.random() * 20 - 10,
+            duration: 10 + Math.random() * 5,
+            fontSize: Math.random() * 10 + 10,
+        });
     }, []);
+
+    if (!config) return null;
 
     return (
         <motion.div
-            initial={{ y: -20, x: `${randomX}vw`, opacity: 0, rotate: 0 }}
+            initial={{ y: -20, x: `${config.initialX}vw`, opacity: 0, rotate: 0 }}
             animate={{
                 y: "110vh",
-                x: `${randomX + (Math.random() * 20 - 10)}vw`,
+                x: `${config.initialX + config.moveX}vw`,
                 opacity: [0, 1, 1, 0],
                 rotate: 360,
             }}
             transition={{
-                duration: 10 + Math.random() * 5,
+                duration: config.duration,
                 repeat: Infinity,
                 delay: delay,
                 ease: "linear",
             }}
             className="absolute top-0 text-pink-200/60 pointer-events-none"
-            style={{ fontSize: `${Math.random() * 10 + 10}px` }}
+            style={{ fontSize: `${config.fontSize}px` }}
         >
             ❀
         </motion.div>

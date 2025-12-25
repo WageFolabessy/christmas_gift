@@ -19,6 +19,7 @@ export const TimeAwareContainer = ({
 
     useEffect(() => {
         const hours = new Date().getHours();
+        // eslint-disable-next-line
         setIsDay(hours >= 6 && hours < 18);
 
         // Pre-load audio
@@ -89,11 +90,11 @@ export const TimeAwareContainer = ({
     };
 
     if (isDay === null) {
-        return <div className="h-[100dvh] w-full bg-sky-100" />;
+        return <div className="h-dvh w-full bg-sky-100" />;
     }
 
     return (
-        <div className="relative h-[100dvh] w-full overflow-hidden font-sans">
+        <div className="relative h-dvh w-full overflow-hidden font-sans">
 
             <AnimatePresence mode="wait">
                 {isDay ? (
@@ -103,7 +104,7 @@ export const TimeAwareContainer = ({
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 1.5 }}
-                        className="absolute inset-0 bg-gradient-to-b from-sky-300 via-sky-100 to-amber-50"
+                        className="absolute inset-0 bg-linear-to-b from-sky-300 via-sky-100 to-amber-50"
                     >
                         <div className="absolute inset-0 opacity-30 pointer-events-none mix-blend-multiply bg-[url('/day.svg')] bg-repeat" />
                         <FallingPetals />
@@ -115,7 +116,7 @@ export const TimeAwareContainer = ({
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 1.5 }}
-                        className="absolute inset-0 bg-gradient-to-b from-slate-950 via-indigo-950 to-rose-950"
+                        className="absolute inset-0 bg-linear-to-b from-slate-950 via-indigo-950 to-rose-950"
                     >
                         <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay bg-[url('/night.svg')] bg-repeat" />
                         <Fireflies />
@@ -123,7 +124,7 @@ export const TimeAwareContainer = ({
                 )}
             </AnimatePresence>
 
-            <div className="relative z-10 flex h-[100dvh] flex-col items-center py-6 px-4 text-center">
+            <div className="relative z-10 flex h-dvh flex-col items-center py-6 px-4 text-center">
 
                 {/* 1. Header Section (Greeting) */}
                 <motion.div
@@ -147,7 +148,7 @@ export const TimeAwareContainer = ({
                     transition={{ delay: 0.7, duration: 1 }}
                     className="flex-1 w-full min-h-0 flex items-center justify-center my-2"
                 >
-                    <div className="relative w-full h-full max-w-[300px] flex items-center justify-center">
+                    <div className="relative w-full h-full max-w-75 flex items-center justify-center">
                         <ChristmasTree isDay={!!isDay} />
                     </div>
                 </motion.div>
@@ -163,7 +164,7 @@ export const TimeAwareContainer = ({
                     `}
                 >
                     <p className="font-serif text-base md:text-xl italic leading-relaxed">
-                        "Cintailah sesamamu manusia seperti dirimu sendiri"
+                        &quot;Cintailah sesamamu manusia seperti dirimu sendiri&quot;
                     </p>
                     <p className="mt-2 text-xs font-semibold tracking-widest uppercase opacity-80">
                         Matius 22:39
